@@ -38,11 +38,11 @@ public class Cinema {
 
     static String[][] createCinemaHall() {
         String[][] cinemaHall;
-            System.out.println("Enter the number of rows:");
-            final int rows = SCANNER.nextInt() + 1;
-            System.out.println("Enter the number of seats in each row:");
-            final int seats = SCANNER.nextInt() + 1;
-            cinemaHall = new String[rows][seats];
+        System.out.println("Enter the number of rows:");
+        final int rows = SCANNER.nextInt() + 1;
+        System.out.println("Enter the number of seats in each row:");
+        final int seats = SCANNER.nextInt() + 1;
+        cinemaHall = new String[rows][seats];
 
         for (int i = 0; i < cinemaHall.length; i++) {
             for (int y = 0; y < cinemaHall[i].length; y++) {
@@ -117,23 +117,23 @@ public class Cinema {
         double PERCENTAGE_TICKETS_PURCHASED = ticketsPurchased != 0 ? 100 / ((double) allSeats / ticketsPurchased) : 0;
 
         System.out.printf("""
-                
+                                
                 Number of purchased tickets: %d
                 Percentage: %.2f%%
                 Current income: $%d
                 Total income: $%d
-                
+                                
                 """, ticketsPurchased, PERCENTAGE_TICKETS_PURCHASED, currentIncome, totalIncome);
     }
 
     static void showTotalIncome(String[][] cinemaHall) {
         //if there are less than 60 available seats = we take the maximum price
         if (allSeats < 60) {
-            totalIncome = cinemaHall.length * cinemaHall[0].length * FRONT_ROWS_SEAT_PRICE;
+            totalIncome = allSeats * FRONT_ROWS_SEAT_PRICE;
         } else {
             int row = cinemaHall.length - 1;
             int seats = cinemaHall[0].length - 1;
-            int frontRowLine = Math.max((row - 1) / 2, 4);
+            int frontRowLine = row / 2;
             int backRowLine = row - frontRowLine;
             totalIncome = frontRowLine * FRONT_ROWS_SEAT_PRICE * seats + backRowLine * BACK_ROWS_SEAT_PRICE * seats;
         }
